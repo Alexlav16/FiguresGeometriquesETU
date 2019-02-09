@@ -9,9 +9,16 @@ namespace FiguresGeometriques
 {
   class Application
   {
-    private RenderWindow window = null;
+
+		public const int WIDTH = 1024;
+		public const int HEIGHT = 768;
+		public const uint FRAME_LIMIT = 60;
+
+		private RenderWindow window = null;
 		private Color backgroundColor = Color.Black;
-		private Player player = new Player(3, 5.5f, new Vector2f(100, 100));
+
+		private Player player = new Player(new Vector2f(100, 100), 3, Color.Blue, 5.5f, 1);
+		private List<Drawable> drawables = new List<Drawable>();
 
     private void OnClose(object sender, EventArgs e)
     {
@@ -19,29 +26,19 @@ namespace FiguresGeometriques
       window.Close();
     }
 
-		private void KeyPressed(object sender, KeyEventArgs e)
+		private void OnKeyPressed(object sender, KeyEventArgs e)
 		{
-			if(e.Code == Keyboard.Key.W)
-			{
-				player.Move();
-			}
-
-			if(e.Code == Keyboard.Key.A)
-			{
-				player.Rotate(5);
-			}
-
-			if(e.Code == Keyboard.Key.S)
-			{
-				player.Rotate(-5);
-			}
+			
 		}
 
     public Application(string windowTitle, uint width, uint height)
     {
-      window = new RenderWindow(new SFML.Window.VideoMode(width, height), windowTitle);
-      window.Closed += new EventHandler(OnClose);
-    }
+      window = new RenderWindow(new SFML.Window.VideoMode(WIDTH, HEIGHT), windowTitle);
+      window.Closed += OnClose;
+			window.KeyPressed += new EventHandler<KeyEventArgs>(OnKeyPressed);
+			window.SetFramerateLimit(FRAME_LIMIT);
+			drawables.Add(player);
+		}
 
 
     public void Run()
@@ -52,21 +49,23 @@ namespace FiguresGeometriques
       {
         window.Clear(backgroundColor);
         window.DispatchEvents();
-        Draw(window);
-        window.Display();
-				
-				
+				Update();
+        Draw();
+        window.Display();			
 			}
     }
 
-    public void Draw(RenderWindow window)
+    public void Draw()
     {
-			player.Draw(window);
-
-
-
-
-
+			foreach(Drawable d in drawables)
+			{
+				d.Draw(window);
+			}
     }
+
+		public void Update()
+		{
+			player.Update();
+		}
   }
 }

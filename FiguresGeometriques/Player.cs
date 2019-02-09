@@ -5,47 +5,60 @@ using System.Text;
 using System.Threading.Tasks;
 using SFML.Graphics;
 using SFML.System;
+using SFML.Window;
 
 namespace FiguresGeometriques
 {
-	class Player
+	class Player : Movable
 	{
-		private int life = 0;
-		private float speed = 0.0f;
-		private Vector2f position = new Vector2f(0, 0);
-		private ConvexShape shape = null;
-
-		public Player(int life, float speed, Vector2f position)
+		public int Life { get; set; }
+		
+		public Player(Vector2f position, uint nbSides, Color color, float speed, int life)
+			:base(position,nbSides,color,speed)
 		{
-			this.life = life;
-			this.speed = speed;
-			this.position = position;
-			shape = new ConvexShape();
-			shape.SetPointCount(3);
-			shape.SetPoint(0, new Vector2f(position.X, position.Y));
-			shape.SetPoint(1, new Vector2f(position.X + 20,position.Y - 60));
-			shape.SetPoint(2, new Vector2f(position.X + 40, position.Y));
-			shape.FillColor = Color.Blue;
-		}
-
-		public void Draw(RenderWindow window)
-		{
-			window.Draw(shape);
+			Life = life;
+			SetPoint(0, new Vector2f(0,0));
+			SetPoint(1, new Vector2f(30, 10));
+			SetPoint(2, new Vector2f(0, 20));
 		}
 
 		public void Update()
 		{
 
-		}
+			if (Keyboard.IsKeyPressed(Keyboard.Key.W))
+			{
+				Move(Speed);
+			}
+			if (Keyboard.IsKeyPressed(Keyboard.Key.S))
+			{
+				Move(-Speed);
+			}
+			if (Keyboard.IsKeyPressed(Keyboard.Key.A))
+			{
+				Rotate(-5);
+			}
+			if (Keyboard.IsKeyPressed(Keyboard.Key.D))
+			{
+				Rotate(5);
+			}
 
-		public void Move()
-		{
-			
-		}
+			if (Position.X < 0 )
+			{
+				Position = new Vector2f(Application.WIDTH - 1, Position.Y);
+			}
+			else if (Position.X > Application.WIDTH - 1)
+			{
+				Position = new Vector2f(0, Position.Y);
+			}
 
-		public void Rotate(float rotation)
-		{
-			shape.Rotation += rotation;
+			if (Position.Y < 0)
+			{
+				Position = new Vector2f(Position.X, Application.HEIGHT - 1);
+			}
+			else if (Position.Y > Application.HEIGHT - 1)
+			{
+				Position = new Vector2f(Position.X, 0);
+			}
 		}
 	}
 }
