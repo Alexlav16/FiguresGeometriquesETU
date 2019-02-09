@@ -10,8 +10,8 @@ namespace FiguresGeometriques
   class Application
   {
     private RenderWindow window = null;
-			private Color backgroundColor = Color.Black;
-    
+		private Color backgroundColor = Color.Black;
+		private Player player = new Player(3, 5.5f, new Vector2f(100, 100));
 
     private void OnClose(object sender, EventArgs e)
     {
@@ -34,14 +34,14 @@ namespace FiguresGeometriques
       {
         window.Clear(backgroundColor);
         window.DispatchEvents();
-        Draw();
+        Draw(window);
         window.Display();
       }
     }
 
-    public void Draw()
+    public void Draw(RenderWindow window)
     {
-      
+			player.Draw(window);
 
 
 
