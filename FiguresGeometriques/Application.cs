@@ -19,6 +19,24 @@ namespace FiguresGeometriques
       window.Close();
     }
 
+		private void KeyPressed(object sender, KeyEventArgs e)
+		{
+			if(e.Code == Keyboard.Key.W)
+			{
+				player.Move();
+			}
+
+			if(e.Code == Keyboard.Key.A)
+			{
+				player.Rotate(5);
+			}
+
+			if(e.Code == Keyboard.Key.S)
+			{
+				player.Rotate(-5);
+			}
+		}
+
     public Application(string windowTitle, uint width, uint height)
     {
       window = new RenderWindow(new SFML.Window.VideoMode(width, height), windowTitle);
@@ -36,7 +54,9 @@ namespace FiguresGeometriques
         window.DispatchEvents();
         Draw(window);
         window.Display();
-      }
+				
+				
+			}
     }
 
     public void Draw(RenderWindow window)

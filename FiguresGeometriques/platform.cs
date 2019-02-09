@@ -13,7 +13,7 @@ namespace FiguresGeometriques
 
 		int height = 5;
 		int width = 5;
-		public  RectangleShape platform = new RectangleShape();
+		RectangleShape platform = new RectangleShape();
 
 
 		

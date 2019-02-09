@@ -10,10 +10,10 @@ namespace FiguresGeometriques
 {
 	class Player
 	{
-		int life = 0;
-		float speed = 0.0f;
-		Vector2f position = new Vector2f(0, 0);
-		ConvexShape shape = null;
+		private int life = 0;
+		private float speed = 0.0f;
+		private Vector2f position = new Vector2f(0, 0);
+		private ConvexShape shape = null;
 
 		public Player(int life, float speed, Vector2f position)
 		{
@@ -40,7 +40,12 @@ namespace FiguresGeometriques
 
 		public void Move()
 		{
+			
+		}
 
+		public void Rotate(float rotation)
+		{
+			shape.Rotation += rotation;
 		}
 	}
 }
