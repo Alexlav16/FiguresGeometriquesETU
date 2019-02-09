@@ -8,7 +8,7 @@ namespace FiguresGeometriques
 {
 	class Class1
 	{
-
+		//u r gay
 
 	}
 }

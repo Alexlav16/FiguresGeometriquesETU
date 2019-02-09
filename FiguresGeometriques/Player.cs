@@ -7,8 +7,15 @@ using System.Threading.Tasks;
 namespace FiguresGeometriques
 {
 	class Player
-	{  
+	{
+		int life = 0;
+		float speed = 0.0f;
 
+		public Player(int life, float speed)
+		{
+			this.life = life;
+			this.speed = speed;
+		}
 
 
 		
