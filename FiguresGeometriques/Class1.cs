@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace FiguresGeometriques
 {
-	class Player
-	{  
+	class Class1
+	{
 
 
-
-		
 	}
 }
