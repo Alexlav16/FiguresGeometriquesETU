@@ -3,12 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SFML.Graphics;
+
 
 namespace FiguresGeometriques
 {
-	class Class1
+	class Platform
 	{
-		//u r gay
+
+		int height = 5;
+		int width = 5;
+		public  RectangleShape platform = new RectangleShape();
+
+
+		
+
+
+
 
 	}
 }
