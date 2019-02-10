@@ -60,7 +60,7 @@
     <Compile Include="Application.cs" />
     <Compile Include="Drawable.cs" />
     <Compile Include="Movable.cs" />
-    <Compile Include="Platform.cs" />
+    <Compile Include="obstacle.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
