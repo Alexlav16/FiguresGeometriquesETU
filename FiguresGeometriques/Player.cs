@@ -11,7 +11,14 @@ namespace FiguresGeometriques
 {
 	class Player : Movable
 	{
+
 		public int Life { get; set; }
+
+		public bool IsAlive
+		{
+			get { return Life > 0; }
+			private set { }
+		}
 		
 		public Player(Vector2f position, uint nbSides, Color color, float speed, int life)
 			:base(position,nbSides,color,speed)

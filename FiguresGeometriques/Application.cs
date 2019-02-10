@@ -49,7 +49,10 @@ namespace FiguresGeometriques
       {
         window.Clear(backgroundColor);
         window.DispatchEvents();
-				Update();
+				if(!Update())
+				{
+					break;
+				}
         Draw();
         window.Display();			
 			}
@@ -63,9 +66,14 @@ namespace FiguresGeometriques
 			}
     }
 
-		public void Update()
+		public bool Update()
 		{
 			player.Update();
+			if(!player.IsAlive)
+			{
+				return false;
+			}
+			return true;
 		}
   }
 }
