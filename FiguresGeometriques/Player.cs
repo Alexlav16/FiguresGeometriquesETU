@@ -12,8 +12,12 @@ namespace FiguresGeometriques
 	class Player : Movable
 	{
 
-		public int Life { get; set; }
+ 
 
+  public int Life { get; set; }
+
+		public Vector2f playerpos { get; set; }
+      
 		public bool IsAlive
 		{
 			get { return Life > 0; }
@@ -27,6 +31,9 @@ namespace FiguresGeometriques
 			SetPoint(0, new Vector2f(0,0));
 			SetPoint(1, new Vector2f(30, 10));
 			SetPoint(2, new Vector2f(0, 20));
+			Vector2f playerpos = position;
+
+			
 		}
 
 		public void Update()
@@ -66,6 +73,8 @@ namespace FiguresGeometriques
 			{
 				Position = new Vector2f(Position.X, 0);
 			}
+			
+         
 		}
 	}
 }

@@ -17,9 +17,9 @@ namespace FiguresGeometriques
 		private RenderWindow window = null;
 		private Color backgroundColor = Color.Black;
 
-		private Player player = new Player(new Vector2f(100, 100), 3, Color.Blue, 5.5f, 1);
+		public Player player = new Player(new Vector2f(100, 100), 3, Color.Blue, 5.5f, 4);
+		public obstacle _obstacle = new obstacle(new Vector2f(130, 130), 4, Color.Red, 0f, 4);
 		private List<Drawable> drawables = new List<Drawable>();
-
     private void OnClose(object sender, EventArgs e)
     {
       RenderWindow window = (RenderWindow)sender;
@@ -38,6 +38,7 @@ namespace FiguresGeometriques
 			window.KeyPressed += new EventHandler<KeyEventArgs>(OnKeyPressed);
 			window.SetFramerateLimit(FRAME_LIMIT);
 			drawables.Add(player);
+   drawables.Add(_obstacle);
 		}
 
 
@@ -66,14 +67,26 @@ namespace FiguresGeometriques
 			}
     }
 
-		public bool Update()
+
+  
+
+  public bool Update()
 		{
 			player.Update();
-			if(!player.IsAlive)
+  if (player.Position == _obstacle.Position)
+  {
+   player.Life -= _obstacle.objdmg;
+   
+  }
+
+
+  if (!player.IsAlive)
 			{
 				return false;
 			}
 			return true;
 		}
+     
+
   }
 }
