@@ -37,6 +37,6 @@ namespace FiguresGeometriques
 			shape.Origin = new Vector2f(10, 30);
 		}
 
-		public abstract void Update();
+		public abstract void Update(Application application);
 	}
 }

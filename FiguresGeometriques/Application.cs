@@ -25,6 +25,7 @@ namespace FiguresGeometriques
     private Player player1 = new Player1(new Vector2f(100, 100), 8, Color.Blue, 5.5f, 200);
 		private Player player2 = new Player2(new Vector2f(WIDTH - 100, HEIGHT - 100), 8, Color.Yellow, 5.5f, 200);
 		private List<Obstacle> obstacles = new List<Obstacle>();
+		private List<Bullet> bullets = new List<Bullet>();
 		private List<Star> stars = new List<Star>();
 
     private void OnClose(object sender, EventArgs e)
@@ -89,6 +90,11 @@ namespace FiguresGeometriques
 				s.Draw(window);
 			}
 
+			foreach(Bullet b in bullets)
+			{
+				b.Draw(window);
+			}
+
 			player1.Draw(window);
 			player2.Draw(window);
 
@@ -98,8 +104,8 @@ namespace FiguresGeometriques
 
     public bool Update()
     {
-      player1.Update();
-			player2.Update();
+      player1.Update(this);
+			player2.Update(this);
 
 			foreach(Obstacle o in obstacles)
 			{
@@ -121,11 +127,21 @@ namespace FiguresGeometriques
 				s.Update(player1.Direction);
 			}
 
+			foreach(Bullet b in bullets)
+			{
+				b.Update();
+			}
+
       if (!player1.IsAlive || !player2.IsAlive)
 			{
 				return false;
 			}
 			return true;
+		}
+
+		public void AddBullet(Bullet bullet)
+		{
+			bullets.Add(bullet);
 		}
    
   }

@@ -10,50 +10,27 @@ using SFML.Window;
 
 namespace FiguresGeometriques
 {
-	class Bullet : Obstacle
+	class Bullet : Movable
 	{
+		
+	  public int ObjDmg { get; set; }
 
-	//	public Bullet bullet
-	//	{
-//			get { bullet.Position}
-	//		set { }
-	//	}
-
-
-
-
-
-
-		public Bullet(Vector2f position, uint nbSides, Color color, float speed, int Objdmg)
-			: base(position, nbSides, color, speed, Objdmg)
+		public Bullet(Vector2f position, uint nbSides, Color color, float speed, int objDmg, Vector2f direction)
+			: base(position, nbSides, color, speed)
 		{
-			
-			
+			Direction = direction;
+			ObjDmg = objDmg;			
 			SetPoint(0, new Vector2f(0, 0));
 			SetPoint(1, new Vector2f(0, 20));
 			SetPoint(2, new Vector2f(30, 30));
 			SetPoint(3, new Vector2f(0, 30));
 		}
 
-
 		public void Update()
-		{
-			if (Keyboard.IsKeyPressed(Keyboard.Key.F) && Keyboard.IsKeyPressed(Keyboard.Key.W))
-			
-				{
-
+		{ 
 				Position = Position + (Direction * Speed);
 
-
-			
-
-			}
-
-
-
-
-
-
 		}
+		
 	}
 }  

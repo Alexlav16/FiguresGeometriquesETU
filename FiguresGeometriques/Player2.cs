@@ -17,7 +17,7 @@ namespace FiguresGeometriques
 
 		}
 
-		public override void Update()
+		public override void Update(Application application)
 		{
 			if (Keyboard.IsKeyPressed(Keyboard.Key.Up))
 			{
