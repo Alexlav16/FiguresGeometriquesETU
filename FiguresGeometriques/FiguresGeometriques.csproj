@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application.cs" />
+    <Compile Include="Bullet.cs" />
     <Compile Include="Drawable.cs" />
     <Compile Include="Movable.cs" />
     <Compile Include="Obstacle.cs" />

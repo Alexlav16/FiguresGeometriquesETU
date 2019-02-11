@@ -5,16 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using SFML.Graphics;
 using SFML.System;
-
+using SFML.Window;
 
 namespace FiguresGeometriques
 {
 	class Obstacle : Movable  
 	{
+		
 
 		
 
-	public int objdmg { get; set; }
+
+
+		public int objdmg { get; set; }
 
 		public Vector2f objposition
 		{
