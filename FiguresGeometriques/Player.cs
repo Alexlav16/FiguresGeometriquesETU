@@ -9,12 +9,10 @@ using SFML.Window;
 
 namespace FiguresGeometriques
 {
-	class Player : Movable
+	abstract class Player : Movable
 	{
 
- 
-
-  public int Life { get; set; }
+		public int Life { get; set; }
 
 		public Vector2f playerpos { get; set; }
       
@@ -30,51 +28,9 @@ namespace FiguresGeometriques
 			Life = life;
 			SetPoint(0, new Vector2f(0,0));
 			SetPoint(1, new Vector2f(30, 10));
-			SetPoint(2, new Vector2f(0, 20));
-			Vector2f playerpos = position;
-
-			
+			SetPoint(2, new Vector2f(0, 20));	
 		}
 
-		public void Update()
-		{
-
-			if (Keyboard.IsKeyPressed(Keyboard.Key.W))
-			{
-				Move(Speed);
-			}
-			if (Keyboard.IsKeyPressed(Keyboard.Key.S))
-			{
-				Move(-Speed);
-			}
-			if (Keyboard.IsKeyPressed(Keyboard.Key.A))
-			{
-				Rotate(-5);
-			}
-			if (Keyboard.IsKeyPressed(Keyboard.Key.D))
-			{
-				Rotate(5);
-			}
-
-			if (Position.X < 0 )
-			{
-				Position = new Vector2f(Application.WIDTH - 1, Position.Y);
-			}
-			else if (Position.X > Application.WIDTH - 1)
-			{
-				Position = new Vector2f(0, Position.Y);
-			}
-
-			if (Position.Y < 0)
-			{
-				Position = new Vector2f(Position.X, Application.HEIGHT - 1);
-			}
-			else if (Position.Y > Application.HEIGHT - 1)
-			{
-				Position = new Vector2f(Position.X, 0);
-			}
-			
-         
-		}
+		public abstract void Update();
 	}
 }

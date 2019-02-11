@@ -15,11 +15,15 @@ namespace FiguresGeometriques
 		public const uint FRAME_LIMIT = 60;
 
 		private RenderWindow window = null;
-		private Color backgroundColor = Color.Black;
+    private Color backgroundColor = Color.Black;
+		private Font font = new Font("arial.ttf");
+		private Text healthText1 = new Text();
+		private Text healthText2 = new Text();
 
-		public Player player = new Player(new Vector2f(100, 100), 3, Color.Blue, 5.5f, 4);
-		public obstacle _obstacle = new obstacle(new Vector2f(130, 130), 4, Color.Red, 0f, 4);
-		private List<Drawable> drawables = new List<Drawable>();
+    private Player player1 = new Player1(new Vector2f(100, 100), 3, Color.Blue, 5.5f, 200);
+		private Player player2 = new Player2(new Vector2f(WIDTH - 100, HEIGHT - 100), 3, Color.Yellow, 5.5f, 200);
+		private List<Obstacle> obstacles = new List<Obstacle>();
+
     private void OnClose(object sender, EventArgs e)
     {
       RenderWindow window = (RenderWindow)sender;
@@ -37,8 +41,15 @@ namespace FiguresGeometriques
       window.Closed += OnClose;
 			window.KeyPressed += new EventHandler<KeyEventArgs>(OnKeyPressed);
 			window.SetFramerateLimit(FRAME_LIMIT);
-			drawables.Add(player);
-   drawables.Add(_obstacle);
+      obstacles.Add(new Obstacle(new Vector2f(150,150),4,Color.Red,0,1));
+			healthText1.Font = font;
+			healthText1.DisplayedString = "Health: " + player1.Life;
+			healthText1.Color = Color.White;
+			healthText1.Position = new Vector2f(20, 20);
+			healthText2.Font = font;
+			healthText2.DisplayedString = "Health: " + player2.Life;
+			healthText2.Color = Color.White;
+			healthText2.Position = new Vector2f(WIDTH - 200, 20);
 		}
 
 
@@ -61,32 +72,44 @@ namespace FiguresGeometriques
 
     public void Draw()
     {
-			foreach(Drawable d in drawables)
+			player1.Draw(window);
+			player2.Draw(window);
+
+			foreach(Obstacle o in obstacles)
 			{
-				d.Draw(window);
+				o.Draw(window);
 			}
+
+			window.Draw(healthText1);
+			window.Draw(healthText2);
     }
 
+    public bool Update()
+    {
+      player1.Update();
+			player2.Update();
 
-  
+			foreach(Obstacle o in obstacles)
+			{
+				if (o.Intersects(player1)) 
+				{
+					player1.Life -= o.objdmg;
+					healthText1.DisplayedString = "Health: " + player1.Life;
+				}
 
-  public bool Update()
-		{
-			player.Update();
-  if (player.Position == _obstacle.Position)
-  {
-   player.Life -= _obstacle.objdmg;
-   
-  }
+				if (o.Intersects(player2))
+				{
+					player2.Life -= o.objdmg;
+					healthText2.DisplayedString = "Health: " + player2.Life;
+				}
+			}
 
-
-  if (!player.IsAlive)
+      if (!player1.IsAlive || !player2.IsAlive)
 			{
 				return false;
 			}
 			return true;
 		}
-     
-
+   
   }
 }
