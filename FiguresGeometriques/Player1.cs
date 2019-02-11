@@ -38,7 +38,11 @@ namespace FiguresGeometriques
 			}
 			if (Keyboard.IsKeyPressed(Keyboard.Key.F))
 			{
+
+				
 				application.AddBullet(new Bullet(Position, 4, Color.Cyan, 50.0f, 1, Direction));
+				
+
 			}
 
 			if (Position.X < 0)

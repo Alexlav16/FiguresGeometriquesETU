@@ -18,18 +18,19 @@ namespace FiguresGeometriques
 		public Bullet(Vector2f position, uint nbSides, Color color, float speed, int objDmg, Vector2f direction)
 			: base(position, nbSides, color, speed)
 		{
-			Direction = direction;
-			ObjDmg = objDmg;			
 			SetPoint(0, new Vector2f(0, 0));
-			SetPoint(1, new Vector2f(0, 20));
-			SetPoint(2, new Vector2f(30, 30));
-			SetPoint(3, new Vector2f(0, 30));
+			SetPoint(1, new Vector2f(0, 2));
+			SetPoint(2, new Vector2f(4, 2));
+			SetPoint(3, new Vector2f(4, 0));
+			Direction = direction;
+			ObjDmg = objDmg;					
 		}
 
 		public void Update()
-		{ 
-				Position = Position + (Direction * Speed);
+		{
 
+			Position = Position + (Direction * Speed);
+			
 		}
 		
 	}

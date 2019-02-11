@@ -107,7 +107,23 @@ namespace FiguresGeometriques
       player1.Update(this);
 			player2.Update(this);
 
-			foreach(Obstacle o in obstacles)
+
+			foreach (Bullet b in bullets)
+			{
+				if (b.Intersects(player1))
+				{
+					player1.Life -= b.ObjDmg;
+					healthText1.DisplayedString = "Health: " + player1.Life;
+				}
+
+				if (b.Intersects(player2))
+				{
+					player2.Life -= b.ObjDmg;
+					healthText2.DisplayedString = "Health: " + player2.Life;
+				}
+
+			}
+			foreach (Obstacle o in obstacles)
 			{
 				if (o.Intersects(player1)) 
 				{
@@ -120,6 +136,8 @@ namespace FiguresGeometriques
 					player2.Life -= o.objdmg;
 					healthText2.DisplayedString = "Health: " + player2.Life;
 				}
+
+
 			}
 
 			foreach(Star s in stars)

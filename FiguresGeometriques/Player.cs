@@ -21,7 +21,9 @@ namespace FiguresGeometriques
 			get { return Life > 0; }
 			private set { }
 		}
-		
+
+		protected int lastTimeFired;
+
 		public Player(Vector2f position, uint nbSides, Color color, float speed, int life)
 			:base(position,nbSides,color,speed)
 		{
