@@ -10,7 +10,7 @@ namespace FiguresGeometriques
 {
 	class Drawable
 	{
-		ConvexShape shape = null;
+		protected ConvexShape shape = null;
 		public Vector2f Position { get; set; }
 
 		public Color Color { get { return shape.FillColor; } set { shape.FillColor = value; } }

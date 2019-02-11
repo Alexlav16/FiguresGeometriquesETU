@@ -13,6 +13,8 @@ namespace FiguresGeometriques
 		public const int WIDTH = 1024;
 		public const int HEIGHT = 768;
 		public const uint FRAME_LIMIT = 60;
+		public const int NUMBER_STARS = 150;
+		public static Random rand = new Random();
 
 		private RenderWindow window = null;
     private Color backgroundColor = Color.Black;
@@ -20,9 +22,10 @@ namespace FiguresGeometriques
 		private Text healthText1 = new Text();
 		private Text healthText2 = new Text();
 
-    private Player player1 = new Player1(new Vector2f(100, 100), 3, Color.Blue, 5.5f, 200);
-		private Player player2 = new Player2(new Vector2f(WIDTH - 100, HEIGHT - 100), 3, Color.Yellow, 5.5f, 200);
+    private Player player1 = new Player1(new Vector2f(100, 100), 8, Color.Blue, 5.5f, 200);
+		private Player player2 = new Player2(new Vector2f(WIDTH - 100, HEIGHT - 100), 8, Color.Yellow, 5.5f, 200);
 		private List<Obstacle> obstacles = new List<Obstacle>();
+		private List<Star> stars = new List<Star>();
 
     private void OnClose(object sender, EventArgs e)
     {
@@ -50,6 +53,10 @@ namespace FiguresGeometriques
 			healthText2.DisplayedString = "Health: " + player2.Life;
 			healthText2.Color = Color.White;
 			healthText2.Position = new Vector2f(WIDTH - 200, 20);
+			for(int i = 0; i <NUMBER_STARS; ++i)
+			{
+				stars.Add(new Star(rand.Next(0, WIDTH - 1), rand.Next(0,HEIGHT - 1), (float)rand.NextDouble()));
+			}
 		}
 
 
@@ -72,13 +79,18 @@ namespace FiguresGeometriques
 
     public void Draw()
     {
-			player1.Draw(window);
-			player2.Draw(window);
-
 			foreach(Obstacle o in obstacles)
 			{
 				o.Draw(window);
 			}
+
+			foreach(Star s in stars)
+			{
+				s.Draw(window);
+			}
+
+			player1.Draw(window);
+			player2.Draw(window);
 
 			window.Draw(healthText1);
 			window.Draw(healthText2);
@@ -102,6 +114,11 @@ namespace FiguresGeometriques
 					player2.Life -= o.objdmg;
 					healthText2.DisplayedString = "Health: " + player2.Life;
 				}
+			}
+
+			foreach(Star s in stars)
+			{
+				s.Update(player1.Direction);
 			}
 
       if (!player1.IsAlive || !player2.IsAlive)
