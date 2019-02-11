@@ -14,8 +14,8 @@ namespace FiguresGeometriques
 		public const int HEIGHT = 768;
 		public const uint FRAME_LIMIT = 60;
 		public const int NUMBER_STARS = 150;
-		private static Random rand = new Random();
-
+		private static Random rand = new Random();                                           // ur gai lol
+		private float deltaTime = 0.0f;
 		private RenderWindow window = null;
     private Color backgroundColor = Color.Black;
 		private Font font = new Font("arial.ttf");
