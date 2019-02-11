@@ -11,41 +11,18 @@ namespace FiguresGeometriques
 {
 	class Obstacle : Movable  
 	{
-		
 
-		
+		public int ObjDmg { get; set; }
 
-
-
-		public int objdmg { get; set; }
-
-		public Vector2f objposition
-		{
-			get { return objposition; }
-			set { }	
-				
-		}
-
-
-
-
-		public int Dmgdealt
-		{
-			get { return objdmg; }
-			private set { }
-
-		}
-
-
-		public Obstacle(Vector2f position, uint nbSides, Color color, float speed, int Objdmg)
+		public Obstacle(Vector2f position, uint nbSides, Color color, float speed, int objDmg)
 			: base(position, nbSides, color, speed)
 		{
-			objdmg = Objdmg;
+			ObjDmg = objDmg;
 
-       SetPoint(0, new Vector2f(0, 0));
-       SetPoint(1, new Vector2f(30, 0));
-       SetPoint(2, new Vector2f(30, 30));
-       SetPoint(3, new Vector2f(0, 30));
+      SetPoint(0, new Vector2f(0, 0));
+      SetPoint(1, new Vector2f(30, 0));
+      SetPoint(2, new Vector2f(30, 30));
+      SetPoint(3, new Vector2f(0, 30));
 		}
 
 	}

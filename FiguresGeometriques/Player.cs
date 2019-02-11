@@ -11,6 +11,7 @@ namespace FiguresGeometriques
 {
 	abstract class Player : Movable
 	{
+		protected const int FIRE_DELAY = 300;
 
 		public int Life { get; set; }
 
@@ -22,7 +23,7 @@ namespace FiguresGeometriques
 			private set { }
 		}
 
-		protected int lastTimeFired;
+		protected DateTime lastTimeFired;
 
 		public Player(Vector2f position, uint nbSides, Color color, float speed, int life)
 			:base(position,nbSides,color,speed)

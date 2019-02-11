@@ -36,13 +36,10 @@ namespace FiguresGeometriques
 			{
 				Rotate(5);
 			}
-			if (Keyboard.IsKeyPressed(Keyboard.Key.F))
+			if (Keyboard.IsKeyPressed(Keyboard.Key.Space) && (DateTime.Now - lastTimeFired).TotalMilliseconds > FIRE_DELAY)
 			{
-
-				
-				application.AddBullet(new Bullet(Position, 4, Color.Cyan, 50.0f, 1, Direction));
-				
-
+				application.AddBullet(new Bullet(Position, 4, Color.Cyan, 50.0f, 1, Direction, PlayerType.PLAYER_ONE));
+				lastTimeFired = DateTime.Now;
 			}
 
 			if (Position.X < 0)

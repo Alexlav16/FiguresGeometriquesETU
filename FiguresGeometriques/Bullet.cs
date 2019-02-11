@@ -15,15 +15,18 @@ namespace FiguresGeometriques
 		
 	  public int ObjDmg { get; set; }
 
-		public Bullet(Vector2f position, uint nbSides, Color color, float speed, int objDmg, Vector2f direction)
+		public PlayerType PlayerType { get; set; }
+
+		public Bullet(Vector2f position, uint nbSides, Color color, float speed, int objDmg, Vector2f direction, PlayerType playerType)
 			: base(position, nbSides, color, speed)
 		{
 			SetPoint(0, new Vector2f(0, 0));
-			SetPoint(1, new Vector2f(0, 2));
-			SetPoint(2, new Vector2f(4, 2));
-			SetPoint(3, new Vector2f(4, 0));
+			SetPoint(1, new Vector2f(0, 4));
+			SetPoint(2, new Vector2f(8, 4));
+			SetPoint(3, new Vector2f(8, 0));
 			Direction = direction;
-			ObjDmg = objDmg;					
+			ObjDmg = objDmg;
+			PlayerType = playerType;
 		}
 
 		public void Update()
